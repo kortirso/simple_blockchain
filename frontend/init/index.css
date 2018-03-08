@@ -1,0 +1,30 @@
+@import "normalize.css/normalize.css";
+@import "foundation-sites/dist/css/foundation.css";
+
+body {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 300;
+
+  h1,
+  h2 {
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #000;
+    font-size: 36px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+  }
+}
+
+* {
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 18px;
+  font-weight: 300;
+
+  &:focus {
+    outline: none;
+  }
+}
