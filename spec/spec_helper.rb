@@ -1,3 +1,4 @@
+require 'pundit/rspec'
 require 'simplecov'
 SimpleCov.start 'rails'
 

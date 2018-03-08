@@ -44,6 +44,10 @@ gem 'oj_mimic_json'
 # Fast batch record creation
 gem 'activerecord-import'
 
+# Auth and authorize
+gem 'devise', '4.4.1'
+gem 'pundit', '1.1.0'
+
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
