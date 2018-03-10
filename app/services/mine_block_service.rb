@@ -13,7 +13,7 @@ class MineBlockService
     previous_block_hash_exist?
     current_hash = CalculateHashService.calc_hash(block: block, previous_block: previous_block, nonce: nonce)
     proof_of_work = difficulty_substring
-    while !current_hash.start_with?(proof_of_work) do
+    until current_hash.start_with?(proof_of_work)
       nonce += 1
       current_hash = CalculateHashService.calc_hash(block: block, previous_block: previous_block, nonce: nonce)
     end

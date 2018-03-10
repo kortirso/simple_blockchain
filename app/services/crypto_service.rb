@@ -17,10 +17,10 @@ class CryptoService
   end
 
   private def private_file_name
-    "#{Rails.root}/public#{user.private_key_file.to_s}"
+    "#{Rails.root}/public#{user.private_key_filename}"
   end
 
   private def public_file_name
-    "#{Rails.root}/public#{user.public_key_file.to_s}"
+    "#{Rails.root}/public#{user.public_key_filename}"
   end
 end

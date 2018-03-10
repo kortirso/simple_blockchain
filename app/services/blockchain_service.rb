@@ -14,7 +14,7 @@ class BlockchainService
   def valid?
     blocks = Block.all.order(id: :asc).to_a
     blocks[1..-1].each.with_index(1) do |block, index|
-      return false unless neighbor_blocks_valid?(blocks[index], blocks[index - 1])
+      return false unless neighbor_blocks_valid?(block, blocks[index - 1])
     end
     true
   end

@@ -13,6 +13,14 @@ class User < ApplicationRecord
 
   after_commit :generate_keys, on: :create
 
+  def private_key_filename
+    private_key_file.to_s
+  end
+
+  def public_key_filename
+    public_key_file.to_s
+  end
+
   def doctor?
     role == 'doctor'
   end
