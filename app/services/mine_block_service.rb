@@ -1,5 +1,3 @@
-require 'digest'
-
 # Mining block hash service
 class MineBlockService
   DIFFICULTY = 4
@@ -13,11 +11,11 @@ class MineBlockService
 
   def mine(nonce = 0)
     previous_block_hash_exist?
-    current_hash = calculate_hash(nonce)
+    current_hash = CalculateHashService.calc_hash(block: block, previous_block: previous_block, nonce: nonce)
     proof_of_work = difficulty_substring
     while !current_hash.start_with?(proof_of_work) do
       nonce += 1
-      current_hash = calculate_hash(nonce)
+      current_hash = CalculateHashService.calc_hash(block: block, previous_block: previous_block, nonce: nonce)
     end
     block.update(nonce: nonce, current_hash: current_hash, previous_hash: previous_block.current_hash)
   end
@@ -27,10 +25,6 @@ class MineBlockService
       break unless previous_block.current_hash.empty?
       sleep(5)
     end
-  end
-
-  private def calculate_hash(nonce)
-    Digest::SHA256.hexdigest("#{block.id}#{previous_block.current_hash}#{block.created_at}#{block.data}#{nonce}")
   end
 
   private def difficulty_substring
