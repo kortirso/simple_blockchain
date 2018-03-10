@@ -11,6 +11,6 @@ class BlockchainService
   # Use data only in string format (string or {}.to_json)
   def add_block(args = {})
     encrypted_data = CryptoService.new(user_id: args[:user_id]).encrypt(data: args[:data])
-    Block.create(data: encrypted_data, previous_hash: last_block.current_hash, doctor_id: args[:doctor_id], user_id: args[:user_id])
+    Block.create(data: encrypted_data, doctor_id: args[:doctor_id], user_id: args[:user_id])
   end
 end

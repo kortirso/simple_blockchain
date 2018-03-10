@@ -9,6 +9,10 @@ class Block < ApplicationRecord
     all.where.not(current_hash: '').last
   end
 
+  def previous_block
+    Block.find_by(id: id - 1)
+  end
+
   def mine_block
     MineBlockJob.perform_later(id)
   end
