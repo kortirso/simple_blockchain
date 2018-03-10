@@ -5,7 +5,10 @@ class User < ApplicationRecord
   mount_uploader :public_key_file, PemUploader
   mount_uploader :private_key_file, PemUploader
 
+  has_one :doctor_job, class_name: 'Doctor'
+
   validates :role, presence: true, inclusion: { in: %w[patient doctor admin] }
+  validates :name, presence: true
 
   after_commit :generate_keys, on: :create
 
