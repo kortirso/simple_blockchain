@@ -48,6 +48,9 @@ gem 'activerecord-import'
 gem 'devise', '4.4.1'
 gem 'pundit', '1.1.0'
 
+# File uploading
+gem 'carrierwave', '~> 1.0'
+
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
