@@ -8,7 +8,7 @@ FactoryBot.define do
       role 'doctor'
     end
 
-    trait 'admin' do
+    trait :admin do
       role 'admin'
     end
   end

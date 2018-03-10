@@ -39,5 +39,40 @@ RSpec.describe User, type: :model do
   end
 
   describe 'object methods' do
+    context '.doctor?' do
+      it 'returns true for doctors' do
+        user = create :user, :doctor
+
+        expect(user.doctor?).to eq true
+      end
+
+      it 'returns false for others' do
+        user = create :user
+
+        expect(user.doctor?).to eq false
+      end
+    end
+
+    context '.admin?' do
+      it 'returns true for admins' do
+        user = create :user, :admin
+
+        expect(user.admin?).to eq true
+      end
+
+      it 'returns false for others' do
+        user = create :user
+
+        expect(user.admin?).to eq false
+      end
+    end
+
+    context '.generate_keys' do
+      it 'should perform_later job GenerateUserKeysJob' do
+        expect(GenerateUserKeysJob).to receive(:perform_later)
+
+        create :user
+      end
+    end
   end
 end
