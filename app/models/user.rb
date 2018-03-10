@@ -5,7 +5,17 @@ class User < ApplicationRecord
   mount_uploader :public_key_file, PemUploader
   mount_uploader :private_key_file, PemUploader
 
+  validates :role, presence: true, inclusion: { in: %w[patient doctor admin] }
+
   after_commit :generate_keys, on: :create
+
+  def doctor?
+    role == 'doctor'
+  end
+
+  def admin?
+    role == 'admin'
+  end
 
   private def generate_keys
     GenerateUserKeysJob.perform_later(id)

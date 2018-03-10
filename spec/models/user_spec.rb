@@ -1,6 +1,8 @@
 RSpec.describe User, type: :model do
   it { should validate_presence_of :email }
   it { should validate_presence_of :password }
+  it { should validate_presence_of :role }
+  it { should validate_inclusion_of(:role).in_array(%w[patient doctor admin]) }
 
   it 'should be valid' do
     user = create :user
@@ -34,5 +36,8 @@ RSpec.describe User, type: :model do
     user.valid?
 
     expect(user.errors[:email]).to include('has already been taken')
+  end
+
+  describe 'object methods' do
   end
 end
