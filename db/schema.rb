@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310033628) do
+ActiveRecord::Schema.define(version: 20180310055830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blocks", force: :cascade do |t|
+    t.integer "doctor_id"
+    t.integer "user_id"
+    t.text "data"
+    t.integer "nonce", default: 0, null: false
+    t.string "previous_hash", default: "", null: false
+    t.string "current_hash", default: "", null: false
+    t.datetime "created_at"
+    t.index ["doctor_id"], name: "index_blocks_on_doctor_id"
+    t.index ["user_id"], name: "index_blocks_on_user_id"
+  end
 
   create_table "doctors", force: :cascade do |t|
     t.string "profession", default: "", null: false

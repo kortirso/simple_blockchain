@@ -6,6 +6,7 @@ class User < ApplicationRecord
   mount_uploader :private_key_file, PemUploader
 
   has_one :doctor_job, class_name: 'Doctor'
+  has_many :blocks
 
   validates :role, presence: true, inclusion: { in: %w[patient doctor admin] }
   validates :name, presence: true
